@@ -15,3 +15,8 @@ int __res_nquery(void *statep, const char *dname, int class, int type,
                  unsigned char *answer, int anslen) {
     return res_query(dname, class, type, answer, anslen);
 }
+
+int __dn_expand(const unsigned char *msg, const unsigned char *eomorig,
+                const unsigned char *comp_dn, char *exp_dn, int length) {
+    return dn_expand(msg, eomorig, comp_dn, exp_dn, length);
+}
