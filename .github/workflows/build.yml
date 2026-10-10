@@ -1,0 +1,18 @@
+name: Build musl shim
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install musl toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y musl-tools
+      - name: Build
+        run: |
+          musl-gcc -shared -fPIC -o fcntl64_shim.so fcntl64_shim.c
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fcntl64_shim
+          path: fcntl64_shim.so
