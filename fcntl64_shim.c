@@ -11,7 +11,7 @@ int fcntl64(int fd, int cmd, ...) {
     return ret;
 }
 
-int __res_nquery(res_state statep, const char *dname, int class, int type,
+int __res_nquery(void *statep, const char *dname, int class, int type,
                  unsigned char *answer, int anslen) {
-    return res_nquery(statep, dname, class, type, answer, anslen);
+    return res_query(dname, class, type, answer, anslen);
 }
